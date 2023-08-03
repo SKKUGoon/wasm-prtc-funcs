@@ -15,3 +15,21 @@ extern "C" {
 pub fn greet(name: &str) {
     alert(&format!("Hello, {}", name));
 }
+
+#[wasm_bindgen]
+pub struct Foo {
+    value: String,
+}
+
+#[wasm_bindgen]
+impl Foo {
+    pub fn new(value: &str) -> Foo {
+        Foo {
+            value: String::from(value),
+        }
+    }
+
+    pub fn bar(&self) -> String {
+        format!("Hello from Rust WASM! You've entered: {}", self.value)
+    }
+}
